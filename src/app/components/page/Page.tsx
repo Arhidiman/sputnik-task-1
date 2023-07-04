@@ -11,9 +11,11 @@ import { AppState } from 'index';
 
 const Page = ()=> {
     const questions = useSelector((state: AppState)=> state.questions)
+    const state = useSelector((state)=> state)
+    console.log(state)
     return(
         <Space direction='vertical'>
-            {questions.map(question=><QuestionCard key={1} question={question.question}/>)}
+            {questions.map((question, index)=><QuestionCard key={index} question={question.question} answerOptions={question.answerOptions}/>)}
             <Button>Ответить на вопросы</Button>
         </Space>
     )

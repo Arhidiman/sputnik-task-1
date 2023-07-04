@@ -1,19 +1,17 @@
 import { Card, Space, Radio } from 'antd';
+import { QuestionType } from 'app/store/app-reducer/questions';
 
-
-interface QuestionProps {
-    question: string
+interface QuestionCardProps {
+    question: string,
+    answerOptions?: string[]
 }
 
-const QuestionCard = ({question}: QuestionProps)=> {
+const QuestionCard = ({question, answerOptions}: QuestionCardProps)=> {
     return(
         <Card title={question}>
             <Radio.Group value={1}>
                 <Space direction='vertical'>
-                    <Radio value={1}>answ 1</Radio>
-                    <Radio value={2}>answ 2</Radio>
-                    <Radio value={3}>answ 3</Radio>
-                    <Radio value={4}>answ 4</Radio>
+                    {answerOptions.map((option, index) => <Radio key={index} value={1}>{option}</Radio>)}
                 </Space>
             </Radio.Group>
         </Card>

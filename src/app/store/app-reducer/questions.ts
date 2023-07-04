@@ -1,14 +1,14 @@
 
 
-export type Question = {
+export type QuestionType = {
     question: string
-    answers: string[],
+    answerOptions: string[],
     checkedAnswer: '' | number,
     rightAnswer: number,
     isChecked: boolean
 }
 
-export type QuestionsState = Question[]
+export type QuestionsState = QuestionType[]
 
 type PayloadAction = {
     type: string,
@@ -17,71 +17,71 @@ type PayloadAction = {
 
 const initialState: QuestionsState = [
     {
-        question: '1',
-        answers: ['a1', 'b1', 'c1', 'd1'],
+        question: 'Ученый, доказавший движение планет вокруг Солнца.',
+        answerOptions: ['Николай Коперник', 'Джордано Бруно', 'Галилео Галилей'],
+        checkedAnswer: '',
+        rightAnswer: 0,
+        isChecked: false
+    },
+    {
+        question: 'Какая планета самая большая в Солнечной системе?',
+        answerOptions: ['Сатурн', 'Земля', 'Юпитер'],
         checkedAnswer: '',
         rightAnswer: 2,
         isChecked: false
     },
     {
-        question: '2',
-        answers: ['a2', 'b2', 'c2', 'd2'],
+        question: 'Какая планета быстрее остальных совершает свой оборот вокруг Солнца?',
+        answerOptions: ['Меркурий', 'Венера', 'Земля'],
+        checkedAnswer: '',
+        rightAnswer: 0,
+        isChecked: false
+    },
+    {
+        question: 'У какой планеты сутки равны году?',
+        answerOptions: ['Плутон', 'Венера', 'Юпитер'],
+        checkedAnswer: '',
+        rightAnswer: 1,
+        isChecked: false
+    },
+    {
+        question: 'Какая планета названа "неправильно"?',
+        answerOptions: ['Юпитер', 'Земля', 'Венера'],
+        checkedAnswer: '',
+        rightAnswer: 1,
+        isChecked: false
+    },
+    {
+        question: 'Планета, которая имеет два спутника - Фобос и Деймос',
+        answerOptions: ['Марс', 'Плутон', 'Меркурий'],
+        checkedAnswer: '',
+        rightAnswer: 0,
+        isChecked: false
+    },
+    {
+        question: 'Планеты земной группы.',
+        answerOptions: ['Венера, Земля, Марс, Нептун', 'Венера, Земля, Марс, Плутон.', 'Меркурий, Венера, Земля, Марс.'],
         checkedAnswer: '',
         rightAnswer: 2,
         isChecked: false
     },
     {
-        question: '3',
-        answers: ['a3', 'b3', 'c3', 'd3'],
+        question: 'У какой планеты наибольшее количество спутников?',
+        answerOptions: ['Уран', 'Юпитер', 'Сатурн'],
         checkedAnswer: '',
         rightAnswer: 2,
         isChecked: false
     },
     {
-        question: '4',
-        answers: ['a4', 'b4', 'c4', 'd4'],
+        question: 'Что, по одной теории, образовалось после распада планеты Фаэтон?',
+        answerOptions: ['Солнце', 'Планета Марс', 'Пояс астероидов'],
         checkedAnswer: '',
         rightAnswer: 2,
         isChecked: false
     },
     {
-        question: '5',
-        answers: ['a5', 'b5', 'c5', 'd5'],
-        checkedAnswer: '',
-        rightAnswer: 2,
-        isChecked: false
-    },
-    {
-        question: '6',
-        answers: ['a6', 'b6', 'c6', 'd6'],
-        checkedAnswer: '',
-        rightAnswer: 2,
-        isChecked: false
-    },
-    {
-        question: '7',
-        answers: ['a7', 'b7', 'c7', 'd7'],
-        checkedAnswer: '',
-        rightAnswer: 2,
-        isChecked: false
-    },
-    {
-        question: '8',
-        answers: ['a8', 'b8', 'c8', 'd8'],
-        checkedAnswer: '',
-        rightAnswer: 2,
-        isChecked: false
-    },
-    {
-        question: '9',
-        answers: ['a9', 'b9', 'c9', 'd9'],
-        checkedAnswer: '',
-        rightAnswer: 2,
-        isChecked: false
-    },
-    {
-        question: '10',
-        answers: ['a10', 'b10', 'c10', 'd10'],
+        question: 'Планета в Поясе астероидов.',
+        answerOptions: ['Церера', 'Эрида', 'Плутон'],
         checkedAnswer: '',
         rightAnswer: 2,
         isChecked: false
