@@ -1,7 +1,7 @@
 import { Card, Space, Radio, Button } from 'antd';
 import QuestionCard from '../QuestionCard/QuestionCard';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { QuestionsState } from 'app/store/app-reducer/questions';
+import { QuestionsState, QuestionType } from 'app/store/app-reducer/questions';
 import { AppState } from 'index';
 
 
@@ -10,12 +10,17 @@ import { AppState } from 'index';
 
 
 const Page = ()=> {
-    const questions = useSelector((state: AppState)=> state.questions)
-    const state = useSelector((state)=> state)
-    console.log(state)
+    const questions = useSelector((state: AppState)=> state.questions.questionsList)
+    console.log(questions)
     return(
         <Space direction='vertical'>
-            {questions.map((question, index)=><QuestionCard key={index} question={question.question} answerOptions={question.answerOptions}/>)}
+            {questions.map((question: QuestionType, index: number)=><QuestionCard 
+                key={index} 
+                questionIndex={index+1}
+                question={question.question} 
+                answerOptions={question.answerOptions}
+                checkedAnswer={question.checkedAnswer}/>
+            )}
             <Button>Ответить на вопросы</Button>
         </Space>
     )

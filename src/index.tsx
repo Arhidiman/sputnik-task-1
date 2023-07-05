@@ -9,6 +9,7 @@ import rootReducer from "app/store/store";
 
 const store = createStore(rootReducer)
 export type AppState = ReturnType<typeof store.getState>
+console.log(store.getState())
 
 const root = (
     <BrowserRouter>
