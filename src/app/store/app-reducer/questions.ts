@@ -21,33 +21,31 @@ export type Action<Payload> = {
     payload? : Payload
 }
 
-// export type Options = {label: string, value: string, disabled: boolean}[]
-export type Options = string[]
+export type Options = {value: string, disabled: boolean, isChecked: boolean}[]
 
 
 const checkBoxOptions = [
-    // [{label: 'Николай Коперник', value: 'Николай Коперник', disabled: false}, {label: 'Джордано Бруно', value: 'Джордано Бруно', disabled: false}, {label: 'Галилео Галилей', value: 'Галилео Галилей', disabled: false}],
-    // [{label: 'Сатурн', value: 'Сатурн', disabled: false}, {label: 'Земля', value: 'Земля', disabled: false}, {label: 'Юпитер', value: 'Юпитер', disabled: false}],
-    // [{label: 'Меркурий', value: 'Меркурий', disabled: false},{label: 'Венера', value: 'Венера', disabled: false}, {label: 'Земля', value: 'Земля', disabled: false}],
-    // [{label: 'Плутон', value: 'Плутон', disabled: false}, {label: 'Венера', value: 'Венера', disabled: false}, {label: 'Юпитер', value: 'Юпитер', disabled: false}],
-    // [{label: 'Юпитер', value: 'Юпитер', disabled: false}, {label: 'Земля', value: 'Земля', disabled: false}, {label: 'Венера', value: 'Венера', disabled: false}],
-    // [{label: 'Марс', value: 'Марс', disabled: false}, {label: 'Плутон', value: 'Плутон', disabled: false}, {label: 'Меркурий', value: 'Меркурий', disabled: false}],
-    // [{label: 'Венера, Земля, Марс, Нептун', value: 'Венера, Земля, Марс, Нептун', disabled: false}, {label: 'Венера, Земля, Марс, Плутон.', value: 'Венера, Земля, Марс, Плутон.', disabled: false}, {label: 'Меркурий, Венера, Земля, Марс.', value: 'Меркурий, Венера, Земля, Марс.', disabled: false}],
-    // [{label: 'Уран', value: 'Уран', disabled: false}, {label: 'Юпитер', value: 'Юпитер', disabled: false}, {label: 'Сатурн', value: 'Сатурн', disabled: false}],
-    // [{label: 'Солнце', value: 'Солнце', disabled: false}, {label: 'Планета Марс', value: 'Планета Марс', disabled: false}, {label: 'Пояс астероидов',  value: 'Пояс астероидов', disabled: false}],
-    // [{label: 'Церера', value: 'Церера', disabled: false}, {label: 'Эрида', value: 'Эрида', disabled: false}, {label: 'Плутон', value: 'Плутон', disabled: false}],
+    [{value: 'Николай Коперник', disabled: false, isChecked: false}, {value: 'Джордано Бруно', disabled: false, isChecked: false}, {value: 'Галилео Галилей', disabled: false, isChecked: false}],
+    [{value: 'Сатурн', disabled: false, isChecked: false}, { value: 'Земля', disabled: false, isChecked: false}, {value: 'Юпитер', disabled: false, isChecked: false}],
+    [{value: 'Меркурий', disabled: false, isChecked: false},{value: 'Венера', disabled: false, isChecked: false}, {value: 'Земля', disabled: false, isChecked: false}],
+    [{value: 'Плутон', disabled: false, isChecked: false}, {value: 'Венера', disabled: false, isChecked: false}, {value: 'Юпитер', disabled: false, isChecked: false}],
+    [{value: 'Юпитер', disabled: false, isChecked: false}, {value: 'Земля', disabled: false, isChecked: false}, {value: 'Венера', disabled: false, isChecked: false}],
+    [{value: 'Марс', disabled: false, isChecked: false}, {value: 'Плутон', disabled: false, isChecked: false}, {value: 'Меркурий', disabled: false, isChecked: false}],
+    [{value: 'Венера, Земля, Марс, Нептун', disabled: false, isChecked: false}, {value: 'Венера, Земля, Марс, Плутон.', disabled: false, isChecked: false}, {value: 'Меркурий, Венера, Земля, Марс.', disabled: false, isChecked: false}],
+    [{value: 'Уран', disabled: false, isChecked: false}, {value: 'Юпитер', disabled: false, isChecked: false}, {value: 'Сатурн', disabled: false, isChecked: false}],
+    [{value: 'Солнце', disabled: false, isChecked: false}, {value: 'Планета Марс', disabled: false, isChecked: false}, {value: 'Пояс астероидов', disabled: false, isChecked: false}],
+    [{value: 'Церера', disabled: false, isChecked: false}, {value: 'Эрида', disabled: false, isChecked: false}, {value: 'Плутон', disabled: false, isChecked: false}],
 
-    ['Николай Коперник','Джордано Бруно','Галилео Галилей'],
-    ['Сатурн','Земля', 'Юпитер'],
-    ['Меркурий','Венера', 'Земля'],
-    ['Плутон', 'Венера', 'Юпитер'],
-    ['Юпитер', 'Земля', 'Венера'],
-    ['Марс', 'Плутон', 'Меркурий'],
-    ['Венера, Земля, Марс, Нептун', 'Венера, Земля, Марс, Плутон.', 'Меркурий, Венера, Земля, Марс.'],
-    ['Уран', 'Юпитер', 'Сатурн'],
-    ['Солнце', 'Планета Марс', 'Пояс астероидов'],
-    ['Церера', 'Эрида', 'Плутон'],
-
+    // ['Николай Коперник','Джордано Бруно','Галилео Галилей'],
+    // ['Сатурн','Земля', 'Юпитер'],
+    // ['Меркурий','Венера', 'Земля'],
+    // ['Плутон', 'Венера', 'Юпитер'],
+    // ['Юпитер', 'Земля', 'Венера'],
+    // ['Марс', 'Плутон', 'Меркурий'],
+    // ['Венера, Земля, Марс, Нептун', 'Венера, Земля, Марс, Плутон.', 'Меркурий, Венера, Земля, Марс.'],
+    // ['Уран', 'Юпитер', 'Сатурн'],
+    // ['Солнце', 'Планета Марс', 'Пояс астероидов'],
+    // ['Церера', 'Эрида', 'Плутон'],
 ]   
 
 const initialState: QuestionsState = {
@@ -129,9 +127,19 @@ const initialState: QuestionsState = {
 
 export const questionsReducer = (state = initialState as QuestionsState, action: Action<CheckAnswerPayload>) => {
     const payload = action.payload
-    console.log(payload)
     switch(action.type) {
-    case 'CHECK_ANSWER': return ({...state, questionsList: []})
+    case 'CHECK_ANSWER': return ({...state, questionsList: state.questionsList.map((question, index)=>{
+        const newQuestion = question
+        if (payload.questionIndex === index) {
+            const answerIndex = payload.answerIndex
+            const answers = newQuestion.answerOptions
+            for (const answer of answers) {
+                answer.isChecked = false
+            }
+            newQuestion.answerOptions[answerIndex].isChecked = true
+        }
+        return newQuestion
+    })})
     default: return state
     }
 }
