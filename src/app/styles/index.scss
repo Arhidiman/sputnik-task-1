@@ -60,3 +60,11 @@ ul li {
   margin: 20px auto
 }
 
+.result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
