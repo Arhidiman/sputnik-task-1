@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { questionsReducer } from "./app-reducer/questions";
+import { questionsReducer } from "./questions-reducer/questions-reducer";
 
 const rootReducer = combineReducers({
     questions: questionsReducer
