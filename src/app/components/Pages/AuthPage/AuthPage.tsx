@@ -15,8 +15,6 @@ function AuthPage() {
     const logInUser = () => dispatch(logIn())
     const userName = useSelector((state: AppState)=>state.user.name)
     const userPassword = useSelector((state: AppState)=>state.user.password)
-    console.log(userName)
-
     const jsonHeaders = {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -25,9 +23,7 @@ function AuthPage() {
     };
     
     const onRegSubmit = async () => {
-        console.log(userName, userPassword)
         if (userName && userPassword) {
-            console.log('name and pswrd exist')
             try {
                 await fetch('http://localhost:3011/reg', {
                     method: "POST",
@@ -39,9 +35,8 @@ function AuthPage() {
                 }).then((result) => result.json())
                 await onLoginSumbit()
             } catch(error) {
-                console.log('error')
+                console.log(error)
             }
-            console.log('close modal here')
             onCloseModal()
         }
     }

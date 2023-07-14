@@ -28,6 +28,7 @@ module.exports = {
         'react/jsx-runtime': 'off',
         'react/react-in-jsx-scope': 'off',
         'no-unused-vars': 'warn',
-        'no-undef': 'off'
+        'no-undef': 'off',
+        '@typescript-eslint/no-var-requires': 0,
     }
 }

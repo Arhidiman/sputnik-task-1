@@ -41,7 +41,6 @@ const QuestionsPage = ()=> {
                 <p className='timer-title'>До конца теста осталось:</p>
                 <Countdown value={deadline} format="mm:ss:SSS" onFinish={getResult}/>
             </div>
-            
             <Space direction='vertical'>
                 {
                     options && getCurrentPage(currentPage, pageSize, questions).map((question)=>
