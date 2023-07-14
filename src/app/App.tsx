@@ -1,19 +1,21 @@
-import { Pagination } from 'antd';
 import './styles/index.scss';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { AppState } from 'index';
-import { Button, Modal } from 'antd';
 import QuestionsPage from './components/Pages/AuthPage/QuestionsPage';
 import AuthPage from './components/Pages/AuthPage/AuthPage';
-
+import { logIn } from './store/user-reducer/user-reducer';
 
 export function App() {
-
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(logIn())
+    }, [])
+    const tokenData = useSelector((state: AppState) => state.user.tokenData)
     return (
         <div className='app'>
-            <AuthPage/>
-            <QuestionsPage/>
+            {!tokenData && <AuthPage/>}
+            {tokenData && <QuestionsPage/>}
         </div>
     );
 }

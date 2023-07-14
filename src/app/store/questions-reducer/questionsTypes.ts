@@ -8,7 +8,7 @@ export type QuestionType = {
 
 export type QuestionsState = {
     questionsList: QuestionType[],
-    result: Result
+    result: Result,
 }
 
 export type CheckAnswerPayload = {

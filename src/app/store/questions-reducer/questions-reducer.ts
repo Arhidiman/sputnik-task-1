@@ -1,6 +1,8 @@
 import { QuestionType, QuestionsState, Action, CheckAnswerPayload } from "./questionsTypes"
 import { initialState } from "./initialState"
 
+
+
 const checkResult = (questions: QuestionType[]) => {
     const result = {
         totalAnswered: 0,
@@ -38,5 +40,7 @@ export const questionsReducer = (state = initialState as QuestionsState, action:
     default: return state
     }
 }
+
+export const getResult = () : {type: string} => {return {type: 'OPEN_MODAL'}}
 
 
