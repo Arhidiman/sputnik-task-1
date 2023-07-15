@@ -23,11 +23,16 @@ const QuestionsPage = ()=> {
     const dispatch = useDispatch()
     const getTestResult = ()=> dispatch(getResult())
     const {Countdown} = Statistic
-    const [deadline] = useState(Date.now() + 1000 * 60 * 5)
+    const [deadline, setDeadline] = useState(Date.now() + 1000*60*5)
+    
     const logOutUser = ()=> {
         dispatch(logOut())
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
+    }
+    const finishTest = ()=> {
+        getTestResult()
+        setDeadline(0)
     }
 
     const tokenData = useSelector((state: AppState)=> state.user.tokenData)
@@ -39,7 +44,7 @@ const QuestionsPage = ()=> {
             </div>
             <div className='timer'>
                 <p className='timer-title'>До конца теста осталось:</p>
-                <Countdown value={deadline} format="mm:ss:SSS" onFinish={getResult}/>
+                <Countdown value={deadline} format="mm:ss:SSS" onFinish={getTestResult}/>
             </div>
             <Space direction='vertical'>
                 {
@@ -54,7 +59,7 @@ const QuestionsPage = ()=> {
                 {}
             </Space>
             <div className='result-container'>
-                <Button onClick={getTestResult}>Ответить на вопросы</Button>
+                <Button onClick={finishTest}>Ответить на вопросы</Button>
                 {result.isChecked && (
                     <p className='result'>
                         Дано ответов: {result.totalAnswered},

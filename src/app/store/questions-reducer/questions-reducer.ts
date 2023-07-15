@@ -41,6 +41,6 @@ export const questionsReducer = (state = initialState as QuestionsState, action:
     }
 }
 
-export const getResult = () : {type: string} => {return {type: 'OPEN_MODAL'}}
+export const getResult = () : {type: string} => {return {type: 'GET_RESULT'}}
 
 
