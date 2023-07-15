@@ -13,7 +13,7 @@ const getCurrentPage = (currentPage: number, pageSize:number, questions: Questio
 }
 
 const QuestionsPage = ()=> {
-    const options: [] = null
+
     const questions = useSelector((state: AppState) => state.questions.questionsList)
     const result = useSelector((state: AppState) => state.questions.result)
     const [currentPage, setCurrentPage] = useState(1)
@@ -43,7 +43,7 @@ const QuestionsPage = ()=> {
             </div>
             <Space direction='vertical'>
                 {
-                    options && getCurrentPage(currentPage, pageSize, questions).map((question)=>
+                    questions && getCurrentPage(currentPage, pageSize, questions).map((question)=>
                         <QuestionCard 
                             key={question.index} 
                             question={question}

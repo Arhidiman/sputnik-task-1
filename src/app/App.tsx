@@ -12,6 +12,7 @@ export function App() {
         dispatch(logIn())
     }, [])
     const tokenData = useSelector((state: AppState) => state.user.tokenData)
+    console.log(tokenData)
     return (
         <div className='app'>
             {!tokenData && <AuthPage/>}
