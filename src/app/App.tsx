@@ -7,6 +7,7 @@ import AuthPage from './components/Pages/AuthPage/AuthPage';
 import { logIn } from './store/user-reducer/user-reducer';
 import TestComponent from './components/testComponent';
 
+
 export function App() {
     const dispatch = useDispatch()
     useEffect(() => {
