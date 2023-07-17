@@ -35,15 +35,30 @@ export function buildLoaders({isDev, paths}: BuildOptions): webpack.RuleSetRule[
         exclude: /node_modules/,
     }
 
+    const babelLoader = {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env', '@babel/preset-react']
+            }
+        }
+    }
+
     const fileLoader = {
         test: /\.(png|jpe?g|gif|woff2|woff)$/i,
         type: 'asset/resource',
     }
 
+
+
+
     return [
         fileLoader,
         svgLoader,
         typescriptLoader,
+        babelLoader,
         cssLoader,
     ]
 }

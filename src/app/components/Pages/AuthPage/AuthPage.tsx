@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { AppState } from 'index';
+import { AppState } from '../../../../index';
 import { Button, Modal, Input, Space } from 'antd';
 import { setUserName, setUserPassword, logIn } from 'app/store/user-reducer/user-reducer';
 import { openModal, closeModal } from 'app/store/modal-reducer/modal-reducer';
 
 function AuthPage() {
-
     const isModalOpened = useSelector((state: AppState) => state.modal.isModalOpened)
     const dispatch = useDispatch()
     const onOpenModal = ()=> dispatch(openModal())

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import QuestionCard from 'app/components/QuestionCard/QuestionCard';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { QuestionType } from 'app/store/questions-reducer/questionsTypes';
-import { AppState } from 'index';
+import { AppState } from '../../../../index';
 import { getResult } from 'app/store/questions-reducer/questions-reducer';
 import { logOut } from 'app/store/user-reducer/user-reducer';
 
