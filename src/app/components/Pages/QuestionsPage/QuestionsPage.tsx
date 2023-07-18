@@ -6,7 +6,7 @@ import { QuestionType } from 'app/store/questions-reducer/questionsTypes';
 import { AppState } from '../../../../index';
 import { getResult } from 'app/store/questions-reducer/questions-reducer';
 import { logOut } from 'app/store/user-reducer/user-reducer';
-import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+
 
 const getCurrentPage = (currentPage: number, pageSize:number, questions: QuestionType[])=> {
     const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
@@ -48,18 +48,17 @@ const QuestionsPage = ()=> {
                 <Countdown value={deadline} format="mm:ss:SSS" onFinish={getTestResult}/>
             </div>
             <Space direction='vertical'>
-                <ErrorBoundary>
-                    {
-                        questions && getCurrentPage(currentPage, pageSize, questions).map((question)=>
-                            <QuestionCard 
-                                key={question.index} 
-                                question={question}
-                                disabled={result.isChecked}
-                            />
-                        )
-                    }
-                </ErrorBoundary>
-            
+               
+                {
+                    questions && getCurrentPage(currentPage, pageSize, questions).map((question)=>
+                        <QuestionCard 
+                            key={question.index} 
+                            question={question}
+                            disabled={result.isChecked}
+                        />
+                    )
+                }
+          
             </Space>
             <div className='result-container'>
                 <Button onClick={finishTest}>Ответить на вопросы</Button>
