@@ -6,6 +6,8 @@ import { QuestionType } from 'app/store/questions-reducer/questionsTypes';
 import { AppState } from 'index';
 import { getResult } from 'app/store/questions-reducer/questions-reducer';
 import { logOut } from 'app/store/user-reducer/user-reducer';
+import ErrorBoundary from 'app/components/ErrorBoundary/ErrorBoundary';
+import { Link } from 'react-router-dom';
 
 const getCurrentPage = (currentPage: number, pageSize:number, questions: QuestionType[])=> {
     const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
@@ -36,27 +38,30 @@ const QuestionsPage = ()=> {
     }
 
     const tokenData = useSelector((state: AppState)=> state.user.tokenData)
+    console.log('tokenData', tokenData)
     return(
         <>  
             <div className='app-header'>
-                <div>{tokenData.name}</div>
-                <Button onClick={logOutUser}>Выход</Button>
+                <div>{tokenData ? tokenData.name : ''}</div>
+                <Link to = '/'><Button onClick={logOutUser}>Выход</Button> </Link>
+                
             </div>
             <div className='timer'>
                 <p className='timer-title'>До конца теста осталось:</p>
                 <Countdown value={deadline} format="mm:ss:SSS" onFinish={getTestResult}/>
             </div>
             <Space direction='vertical'>
-                {
-                    questions && getCurrentPage(currentPage, pageSize, questions).map((question)=>
-                        <QuestionCard 
-                            key={question.index} 
-                            question={question}
-                            disabled={result.isChecked}
-                        />
-                    )
-                }
-                {}
+                <ErrorBoundary>
+                    {
+                        questions && getCurrentPage(currentPage, pageSize, questions).map((question)=>
+                            <QuestionCard 
+                                key={question.index} 
+                                question={question}
+                                disabled={result.isChecked}
+                            />
+                        )
+                    }
+                </ErrorBoundary>
             </Space>
             <div className='result-container'>
                 <Button onClick={finishTest}>Ответить на вопросы</Button>

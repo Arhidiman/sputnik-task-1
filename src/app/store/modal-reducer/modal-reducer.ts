@@ -1,17 +1,49 @@
 export type ModalState = {
     isModalOpened: boolean,
+    forms: Forms,
+    currentForm: keyof Forms
 }
 
-export type Action = {
+export type Action<Payload> = {
     type: string,
-    payload?: unknown
+    payload?: Payload
+}
+
+export type Forms = {
+    regForm: {
+        title: string,
+        buttonText: string,
+        subtitle: string,
+        linkText: string
+    },
+    authForm: {
+        title: string,
+        buttonText: string,
+        subtitle: string,
+        linkText: string
+    }
 }
 
 const initialState: ModalState = {
-    isModalOpened: false
+    isModalOpened: false,
+    forms: {
+        regForm: {
+            title: 'Регистрация',
+            buttonText: 'Зарегистрироваться',
+            subtitle: 'Есть аккаунт?',
+            linkText: 'Войти'
+        },
+        authForm: {
+            title: 'Вход',
+            buttonText: 'Войти',
+            subtitle: 'Нет аккаунта?',
+            linkText: 'Зарегистрироваться'
+        }
+    },
+    currentForm: 'authForm'
 }
 
-export const modalReducer = (state = initialState as ModalState, action: Action) => {
+export const modalReducer = (state = initialState as ModalState, action: Action<string | keyof Forms>) => {
     switch (action.type) {
     case 'OPEN_MODAL': {
         return {
@@ -25,12 +57,16 @@ export const modalReducer = (state = initialState as ModalState, action: Action)
             isModalOpened: false
         }
     }
+    case 'SWITCH_FORM': {
+        return {
+            ...state,
+            currentForm: state.currentForm === 'authForm' ? 'regForm' : 'authForm'
+        }
+    }
     default: return state
     }
 }
 
-
-export const openModal = () : Action => {return {type: 'OPEN_MODAL'}}
-export const closeModal = () : Action => {return {type: 'CLOSE_MODAL'}}
-
-
+export const openModal = () : Action<string> => {return {type: 'OPEN_MODAL'}}
+export const closeModal = () : Action<string> => {return {type: 'CLOSE_MODAL'}}
+export const switchForm = () : Action<keyof Forms> => {return {type: 'SWITCH_FORM'}}
