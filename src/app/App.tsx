@@ -1,29 +1,32 @@
 import './styles/index.scss';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { AppState } from '../index';
+import { AppState } from 'index';
 import QuestionsPage from './components/Pages/QuestionsPage/QuestionsPage';
-import AuthPage from './components/Pages/AuthPage/AuthPage';
+import MainPage from './components/Pages/MainPage/MainPage';
 import { logIn } from './store/user-reducer/user-reducer';
-import TestComponent from './components/testComponent';
+import { Route, Routes } from 'react-router-dom';
+import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
-
-export function App() {
+const App = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(logIn())
     }, [])
 
     const tokenData = useSelector((state: AppState) => state.user.tokenData)
-    const accessToken = localStorage.getItem('accessToken')
-    console.log(tokenData)
-    console.log(accessToken)
-    
+
     return (
         <div className='app'>
-            <TestComponent></TestComponent>
-            {!tokenData && <AuthPage/>}
-            {tokenData && <QuestionsPage/>}
+            <Routes>
+                <Route path='/' element = {<MainPage/>}/>
+                <Route path='/login' element = {<MainPage/>}/>
+                <Route path='/questions' element = {tokenData ? <ErrorBoundary message='Что то пошло не так'><QuestionsPage/></ErrorBoundary> : null}/>
+                <Route path='*' element = {<PageNotFound/>}/>
+            </Routes>
         </div>
     );
 }
+
+export default App

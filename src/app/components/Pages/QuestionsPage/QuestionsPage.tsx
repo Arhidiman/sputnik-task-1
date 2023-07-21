@@ -3,18 +3,12 @@ import { useState } from 'react';
 import QuestionCard from 'app/components/QuestionCard/QuestionCard';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { QuestionType } from 'app/store/questions-reducer/questionsTypes';
-import { AppState } from '../../../../index';
+import { AppState } from 'index';
 import { getResult } from 'app/store/questions-reducer/questions-reducer';
 import { logOut } from 'app/store/user-reducer/user-reducer';
+import { Link } from 'react-router-dom';
 
-
-const getCurrentPage = (currentPage: number, pageSize:number, questions: QuestionType[])=> {
-    const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
-    return indexedQuestions.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-}
-
-const QuestionsPage = ()=> {
-
+const QuestionsPage = () => {
     const questions = useSelector((state: AppState) => state.questions.questionsList)
     const result = useSelector((state: AppState) => state.questions.result)
     const [currentPage, setCurrentPage] = useState(1)
@@ -22,16 +16,20 @@ const QuestionsPage = ()=> {
     const [questionsNumber] = useState(questions.length)
     const [totalPages] = useState(Math.ceil(questionsNumber/pageSize))
     const dispatch = useDispatch()
-    const getTestResult = ()=> dispatch(getResult())
+    const getTestResult = () => dispatch(getResult())
     const {Countdown} = Statistic
     const [deadline, setDeadline] = useState(Date.now() + 1000*60*5)
     
-    const logOutUser = ()=> {
+    const getCurrentPage = (currentPage: number, pageSize:number, questions: QuestionType[])=> {
+        const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
+        return indexedQuestions.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+    }
+    const logOutUser = () => {
         dispatch(logOut())
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
     }
-    const finishTest = ()=> {
+    const finishTest = () => {
         getTestResult()
         setDeadline(0)
     }
@@ -40,15 +38,14 @@ const QuestionsPage = ()=> {
     return(
         <>  
             <div className='app-header'>
-                <div>{tokenData.name}</div>
-                <Button onClick={logOutUser}>Выход</Button>
+                <div>{tokenData ? tokenData.name : ''}</div>
+                <Link to = '/'><Button onClick={logOutUser}>Выход</Button> </Link>
             </div>
             <div className='timer'>
                 <p className='timer-title'>До конца теста осталось:</p>
                 <Countdown value={deadline} format="mm:ss:SSS" onFinish={getTestResult}/>
             </div>
             <Space direction='vertical'>
-               
                 {
                     questions && getCurrentPage(currentPage, pageSize, questions).map((question)=>
                         <QuestionCard 
@@ -58,7 +55,6 @@ const QuestionsPage = ()=> {
                         />
                     )
                 }
-          
             </Space>
             <div className='result-container'>
                 <Button onClick={finishTest}>Ответить на вопросы</Button>

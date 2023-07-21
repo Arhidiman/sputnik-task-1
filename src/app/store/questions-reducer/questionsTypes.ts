@@ -7,7 +7,7 @@ export type QuestionType = {
 }
 
 export type QuestionsState = {
-    questionsList: QuestionType[],
+    questionsList: QuestionType[] | null,
     result: Result,
 }
 

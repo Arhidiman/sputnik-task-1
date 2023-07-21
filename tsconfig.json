@@ -1,5 +1,4 @@
 {
-  
   "compilerOptions": {
     "outDir": "./dist/",
     // Подсвечивает все места где не указан тип
@@ -32,12 +31,7 @@
     // import * as React from 'react';
     // можно писать такой
     // import React from 'react';
-    // "declaration": false,
-    // "emitDeclarationOnly": true,
-  
-    "allowSyntheticDefaultImports": true,
-  
-    
+    "allowSyntheticDefaultImports": true
   },
   "ts-node": {
     "compilerOptions": {

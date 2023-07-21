@@ -1,49 +1,27 @@
 
-import { Component } from "react";
-// import { ReactNode } from "react";
-import { ReactPropTypes } from "react";
-import PropTypes from 'prop-types';
-import { ReactNode } from "react";
-// type ErrorState = {
-//     error: null | Error
-// }
+import { ReactNode, Component } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "antd";
 
-// type ErrorProps = {
-//     children: ReactPropTypes
-// }
-
-type ErrorBoundaryState = {
-    error: Error
-}
-
-type ErrorBoundaryProps = {
-    children: ReactNode
-}
-
-class ErrorBoundary extends Component <{children: ReactNode}, { error: Error }> {
-    constructor(props: ErrorBoundaryProps) {
-        super(props)
-        this.state = {
-            error: new Error('fail')
-        }
+class ErrorBoundary extends Component <{children: ReactNode, message: string}> {
+    state: {error: Error | null} = {
+        error: null
     }
-
-   
     static getDerivedStateFromError(error: Error) {
         return { error };
     }
-
     render() {
-        if (this.state.error) {
+        const {error} = this.state
+        if (error) {
             return (
-                <div>
-                    <p>Seems like an error occured!</p>
-                    <p>{this.state.error.message}</p>
+                <div className="error-boundary">
+                    <p>Ошибка!</p>
+                    <p>{this.props.message}</p>
+                    <Link to=''><Button>Вернуться на главную страницу</Button></Link>
                 </div>
             );
         }
         return this.props.children;
     }
 }
-
 export default ErrorBoundary;

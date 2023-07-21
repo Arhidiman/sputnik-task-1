@@ -20,7 +20,7 @@ const QuestionCard = ({ question, disabled }: QuestionCardProps)=> {
                         key={index} 
                         disabled={disabled}
                         checked = {index === question.checkedAnswer}
-                        onChange={()=>checkAnswer(question.index, index)}
+                        onChange={() =>checkAnswer(question.index, index)}
                     >
                         {option}
                     </Checkbox>

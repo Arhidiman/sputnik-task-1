@@ -1,20 +1,15 @@
-import type {Config} from 'jest';
+import type {Config} from '@jest/types';
 
-const config: Config = {
-    verbose: true,
+const config: Config.InitialOptions = {
     testEnvironment: "jest-environment-jsdom",
+    verbose: true,
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-    // coverageDirectory: "coverage",  
-    // preset: "ts-jest/presets/js-with-ts",
-    transformIgnorePatterns: [ "/node_modules/(?!MODULE_NAME_HERE).+\\.js$"],
+    preset: 'ts-jest',
     transform: {
-        '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.(ts|tsx)?$': 'ts-jest',
+        "^.+\\.(js|jsx)$": "babel-jest",
     },
-    // globals: {
-    //     "ts-jest": {
-    //         tsConfig: "tsconfig.test.json"
-    //     }
-    // }
+    transformIgnorePatterns: ['./node_modules/'],
 };
 
 export default config;
