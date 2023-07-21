@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
@@ -12,9 +12,9 @@ import { Forms } from 'app/store/modal-reducer/modal-reducer';
 const MainForm: React.FC = () => {
     const currentForm = useSelector((state: AppState)=> state.modal.currentForm as keyof Forms)
     const modalState = useSelector((state: AppState)=> state.modal)
-    const switchModalContent = ()=> dispatch(switchForm())
+    const switchModalContent = () => dispatch(switchForm())
     const dispatch = useDispatch()
-    const onCloseModal = ()=> dispatch(closeModal())
+    const onCloseModal = () => dispatch(closeModal())
     const setName = (name: string)=> dispatch(setUserName(name))
     const setPassword = (password: string)=> dispatch(setUserPassword(password))
     const logInUser = () => dispatch(logIn())
@@ -31,9 +31,7 @@ const MainForm: React.FC = () => {
         'Access-Control-Allow-Origin': '*',
     };
 
-
-
-    const onCheckUser = async (value: string, setUserParameter: any, parameter: string)=> {
+    const onCheckUser = async (value: string, setUserParameter: Dispatch<string>, parameter: string)=> {
         setUserParameter(value)
         try {
             const { name, password } = await fetch('http://localhost:3011/check', {
@@ -44,31 +42,25 @@ const MainForm: React.FC = () => {
                     password: parameter === 'password' ? value : userPassword
                 })
             }).then((result) => result.json())
-            console.log(name, password, 'Данные с сервера получены')
             if (name) {
-                console.log('1')
                 setUserNameMatch(true)
             } 
             if (name && password) {
-                console.log('2')
                 setUserDataMatch(true)
             } 
             if (!name) {
-                console.log('3')
                 setUserNameMatch(false)
             }
             if (!name || !password) {
-                console.log('4')
                 setUserDataMatch(false)
             }
         } catch (error) {
-            console.log(error)
+            alert(error) 
         }
     }    
 
     const onRegSubmit = async () => {
         if (userName && userPassword) {
-            console.log(userName, userPassword)
             try {
                 const {name, password,} = await fetch('http://localhost:3011/reg', {
                     method: "POST",
@@ -82,7 +74,7 @@ const MainForm: React.FC = () => {
                     await onLoginSubmit()
                 }
             } catch(error) {
-                console.log(error)
+                alert(error)           
             }
         }
     }
@@ -107,7 +99,7 @@ const MainForm: React.FC = () => {
             onCloseModal()
             setUserDataMatch(true)
         } catch (error) {
-            console.log(error)
+            alert(error) 
         }
     }
 

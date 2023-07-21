@@ -24,7 +24,7 @@ export type Forms = {
     }
 }
 
-const initialState: ModalState = {
+export const initialState: ModalState = {
     isModalOpened: false,
     forms: {
         regForm: {
@@ -45,28 +45,32 @@ const initialState: ModalState = {
 
 export const modalReducer = (state = initialState as ModalState, action: Action<string | keyof Forms>) => {
     switch (action.type) {
-    case 'OPEN_MODAL': {
-        return {
-            ...state,
-            isModalOpened: true
+        case 'OPEN_MODAL': {
+            return {
+                ...state,
+                isModalOpened: true
+            }
         }
-    }
-    case 'CLOSE_MODAL': {
-        return {
-            ...state,
-            isModalOpened: false
+        case 'CLOSE_MODAL': {
+            return {
+                ...state,
+                isModalOpened: false
+            }
         }
-    }
-    case 'SWITCH_FORM': {
-        return {
-            ...state,
-            currentForm: state.currentForm === 'authForm' ? 'regForm' : 'authForm'
+        case 'SWITCH_FORM': {
+            return {
+                ...state,
+                currentForm: state.currentForm === 'authForm' ? 'regForm' : 'authForm'
+            }
         }
-    }
-    default: return state
+        default: return state
     }
 }
 
-export const openModal = () : Action<string> => {return {type: 'OPEN_MODAL'}}
-export const closeModal = () : Action<string> => {return {type: 'CLOSE_MODAL'}}
-export const switchForm = () : Action<keyof Forms> => {return {type: 'SWITCH_FORM'}}
+const OPEN_MODAl = 'OPEN_MODAL'
+const CLOSE_MODAL = 'CLOSE_MODAL'
+const SWITCH_FORM = 'SWITCH_FORM'
+
+export const openModal = () : Action<string> => {return {type: OPEN_MODAl}}
+export const closeModal = () : Action<string> => {return {type: CLOSE_MODAL}}
+export const switchForm = () : Action<keyof Forms> => {return {type: SWITCH_FORM}}

@@ -1,8 +1,10 @@
-import { QuestionType, QuestionsState, Action, CheckAnswerPayload } from "./questionsTypes"
+import { QuestionType, QuestionsState, CheckAnswerPayload } from "./questionsTypes"
 import { initialState } from "./initialState"
 
-
-
+type Action<Payload> = {
+    type: string, 
+    payload?: Payload
+}
 const checkResult = (questions: QuestionType[]) => {
     const result = {
         totalAnswered: 0,
@@ -22,25 +24,27 @@ const checkResult = (questions: QuestionType[]) => {
     return result
 }
 
-export const questionsReducer = (state = initialState as QuestionsState, action: Action<CheckAnswerPayload>) => {
+export const questionsReducer = (state = initialState as QuestionsState, action: Action<{questionIndex: number, answerIndex: number}>) => {
     switch (action.type) {
-    case 'CHECK_ANSWER': {
-        const newQuestionList = [...state.questionsList]
-        const { answerIndex, questionIndex } = action.payload
-        newQuestionList[questionIndex] = {
-            ...newQuestionList[questionIndex],
-            checkedAnswer: answerIndex
+        case 'CHECK_ANSWER': {
+            const newQuestionList = [...state.questionsList]
+            const { answerIndex, questionIndex } = action.payload
+            newQuestionList[questionIndex] = {
+                ...newQuestionList[questionIndex],
+                checkedAnswer: answerIndex
+            }
+            return {
+                ...state,
+                questionsList: newQuestionList
+            }
         }
-        return {
-            ...state,
-            questionsList: newQuestionList
-        }
-    }
-    case 'GET_RESULT': return ({ ...state, result: checkResult(state.questionsList) })
-    default: return state
+        case 'GET_RESULT': return ({ ...state, result: checkResult(state.questionsList) })
+        default: return state
     }
 }
 
-export const getResult = () : {type: string} => {return {type: 'GET_RESULT'}}
+const CHECK_ANSWER= 'CHECK_ANSWER'
+const GET_RESULT = 'GET_RESULT'
 
-
+export const checkAnswer = (payload: CheckAnswerPayload)=> {return {type: CHECK_ANSWER, payload: {questionIndex: payload.questionIndex, answerIndex: payload.answerIndex}}}
+export const getResult = () : {type: string} => {return {type: GET_RESULT}}

@@ -8,8 +8,7 @@ import { getResult } from 'app/store/questions-reducer/questions-reducer';
 import { logOut } from 'app/store/user-reducer/user-reducer';
 import { Link } from 'react-router-dom';
 
-
-const QuestionsPage = ()=> {
+const QuestionsPage = () => {
     const questions = useSelector((state: AppState) => state.questions.questionsList)
     const result = useSelector((state: AppState) => state.questions.result)
     const [currentPage, setCurrentPage] = useState(1)
@@ -17,7 +16,7 @@ const QuestionsPage = ()=> {
     const [questionsNumber] = useState(questions.length)
     const [totalPages] = useState(Math.ceil(questionsNumber/pageSize))
     const dispatch = useDispatch()
-    const getTestResult = ()=> dispatch(getResult())
+    const getTestResult = () => dispatch(getResult())
     const {Countdown} = Statistic
     const [deadline, setDeadline] = useState(Date.now() + 1000*60*5)
     
@@ -25,12 +24,12 @@ const QuestionsPage = ()=> {
         const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
         return indexedQuestions.slice((currentPage - 1) * pageSize, currentPage * pageSize)
     }
-    const logOutUser = ()=> {
+    const logOutUser = () => {
         dispatch(logOut())
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
     }
-    const finishTest = ()=> {
+    const finishTest = () => {
         getTestResult()
         setDeadline(0)
     }
