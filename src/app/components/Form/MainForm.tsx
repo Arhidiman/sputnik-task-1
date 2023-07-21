@@ -3,11 +3,10 @@ import React, { Dispatch } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { AppState } from 'index';
-import { setUserName, setUserPassword, logIn, setIsUserDataMatch, setIsUserNameMatch } from 'app/store/user-reducer/user-reducer';
-import { closeModal } from 'app/store/modal-reducer/modal-reducer';
-import { switchForm } from 'app/store/modal-reducer/modal-reducer';
-import { Forms } from 'app/store/modal-reducer/modal-reducer';
+import { AppState } from '../../../index';
+import { setUserName, setUserPassword, logIn, setIsUserDataMatch, setIsUserNameMatch } from '../../store/user-reducer/user-reducer';
+import { closeModal, switchForm, Forms } from '../../store/modal-reducer/modal-reducer';
+
 
 const MainForm: React.FC = () => {
     const currentForm = useSelector((state: AppState)=> state.modal.currentForm as keyof Forms)

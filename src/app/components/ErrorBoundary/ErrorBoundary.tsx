@@ -17,7 +17,7 @@ class ErrorBoundary extends Component <{children: ReactNode, message: string}> {
                 <div className="error-boundary">
                     <p>Ошибка!</p>
                     <p>{this.props.message}</p>
-                    <Link to=''><Button>Вернуться на главную страницу</Button></Link>
+                    <Link to='/'><Button>Вернуться на главную страницу</Button></Link>
                 </div>
             );
         }

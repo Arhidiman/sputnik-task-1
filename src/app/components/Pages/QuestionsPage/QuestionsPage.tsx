@@ -1,17 +1,17 @@
 import { Space, Button, Pagination, Statistic } from 'antd';
 import { useState } from 'react';
-import QuestionCard from 'app/components/QuestionCard/QuestionCard';
+import QuestionCard from '../../QuestionCard/QuestionCard';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { QuestionType } from 'app/store/questions-reducer/questionsTypes';
-import { AppState } from 'index';
-import { getResult } from 'app/store/questions-reducer/questions-reducer';
-import { logOut } from 'app/store/user-reducer/user-reducer';
+import { QuestionType } from '../../../store/questions-reducer/questionsTypes';
+import { AppState } from '../../../../index';
+import { getResult } from '../../../store/questions-reducer/questions-reducer';
+import { logOut } from '../../../store/user-reducer/user-reducer';
 import { Link } from 'react-router-dom';
 
 const QuestionsPage = () => {
     const questions = useSelector((state: AppState) => state.questions.questionsList)
     const result = useSelector((state: AppState) => state.questions.result)
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState<number>(1)
     const [pageSize] = useState(3)
     const [questionsNumber] = useState(questions.length)
     const [totalPages] = useState(Math.ceil(questionsNumber/pageSize))
@@ -39,7 +39,7 @@ const QuestionsPage = () => {
         <>  
             <div className='app-header'>
                 <div>{tokenData ? tokenData.name : ''}</div>
-                <Link to = '/'><Button onClick={logOutUser}>Выход</Button> </Link>
+                <Link to='/'><Button onClick={logOutUser}>Выход</Button> </Link>
             </div>
             <div className='timer'>
                 <p className='timer-title'>До конца теста осталось:</p>
@@ -66,7 +66,7 @@ const QuestionsPage = () => {
                     </p>
                 )}
             </div>
-            <Pagination onChange={(e)=> setCurrentPage(e)} defaultCurrent={1} total={totalPages*10}/>
+            <Pagination onChange={setCurrentPage} defaultCurrent={1} total={totalPages*10}/>
         </>
     )
 }

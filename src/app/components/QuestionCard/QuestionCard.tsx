@@ -1,6 +1,7 @@
 import { Card, Space, Checkbox } from 'antd';
-import { QuestionType } from 'app/store/questions-reducer/questionsTypes';
+import { QuestionType } from '../../store/questions-reducer/questionsTypes'
 import { useDispatch } from 'react-redux/es/exports';
+import { checkAnswer } from '../../store/questions-reducer/questions-reducer';
 
 interface QuestionCardProps {
     question: QuestionType & { index: number },
@@ -9,8 +10,8 @@ interface QuestionCardProps {
 
 const QuestionCard = ({ question, disabled }: QuestionCardProps)=> {
     const dispatch = useDispatch()
-    const checkAnswer = (questionIndex: number, answerIndex: number )=> {
-        dispatch({type: 'CHECK_ANSWER', payload: { questionIndex, answerIndex }})
+    const checkOption = (questionIndex: number, answerIndex: number )=> {
+        dispatch(checkAnswer({ questionIndex, answerIndex }))
     }
     return(
         <Card title={question.question}>
@@ -20,7 +21,7 @@ const QuestionCard = ({ question, disabled }: QuestionCardProps)=> {
                         key={index} 
                         disabled={disabled}
                         checked = {index === question.checkedAnswer}
-                        onChange={() =>checkAnswer(question.index, index)}
+                        onChange={() =>checkOption(question.index, index)}
                     >
                         {option}
                     </Checkbox>

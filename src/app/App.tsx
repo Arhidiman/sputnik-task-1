@@ -1,7 +1,7 @@
 import './styles/index.scss';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { AppState } from 'index';
+import { AppState } from '../index';
 import QuestionsPage from './components/Pages/QuestionsPage/QuestionsPage';
 import MainPage from './components/Pages/MainPage/MainPage';
 import { logIn } from './store/user-reducer/user-reducer';
@@ -21,9 +21,9 @@ const App = () => {
         <div className='app'>
             <Routes>
                 <Route path='/' element = {<MainPage/>}/>
-                <Route path='/login' element = {<MainPage/>}/>
-                <Route path='/questions' element = {tokenData ? <ErrorBoundary message='Что то пошло не так'><QuestionsPage/></ErrorBoundary> : null}/>
-                <Route path='*' element = {<PageNotFound/>}/>
+                <Route path='/login' element={<MainPage/>}/>
+                <Route path='/questions' element={tokenData ? <ErrorBoundary message='Что то пошло не так'><QuestionsPage/></ErrorBoundary> : null}/>
+                <Route path='*' element={<PageNotFound/>}/>
             </Routes>
         </div>
     );

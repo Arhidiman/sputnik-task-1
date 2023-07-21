@@ -5,6 +5,10 @@ type Action<Payload> = {
     type: string, 
     payload?: Payload
 }
+
+const CHECK_ANSWER= 'CHECK_ANSWER'
+const GET_RESULT = 'GET_RESULT'
+
 const checkResult = (questions: QuestionType[]) => {
     const result = {
         totalAnswered: 0,
@@ -26,7 +30,7 @@ const checkResult = (questions: QuestionType[]) => {
 
 export const questionsReducer = (state = initialState as QuestionsState, action: Action<{questionIndex: number, answerIndex: number}>) => {
     switch (action.type) {
-        case 'CHECK_ANSWER': {
+        case CHECK_ANSWER: {
             const newQuestionList = [...state.questionsList]
             const { answerIndex, questionIndex } = action.payload
             newQuestionList[questionIndex] = {
@@ -38,13 +42,12 @@ export const questionsReducer = (state = initialState as QuestionsState, action:
                 questionsList: newQuestionList
             }
         }
-        case 'GET_RESULT': return ({ ...state, result: checkResult(state.questionsList) })
+        case GET_RESULT: return ({ ...state, result: checkResult(state.questionsList) })
         default: return state
     }
 }
 
-const CHECK_ANSWER= 'CHECK_ANSWER'
-const GET_RESULT = 'GET_RESULT'
+
 
 export const checkAnswer = (payload: CheckAnswerPayload)=> {return {type: CHECK_ANSWER, payload: {questionIndex: payload.questionIndex, answerIndex: payload.answerIndex}}}
 export const getResult = () : {type: string} => {return {type: GET_RESULT}}
