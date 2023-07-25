@@ -16,7 +16,7 @@ const QuestionCard = ({ question, disabled }: QuestionCardProps)=> {
     return(
         <Card title={question.question}>
             <Space direction='vertical'>
-                {question.answerOptions.map((option, index) => 
+                {question && question.answerOptions.map((option, index) => 
                     <Checkbox 
                         key={index} 
                         disabled={disabled}
