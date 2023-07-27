@@ -20,6 +20,7 @@ const QuestionsPage = () => {
     const {Countdown} = Statistic
     const [deadline, setDeadline] = useState(Date.now() + 1000*60*5)
     
+    
     const getCurrentPage = (currentPage: number, pageSize:number, questions: QuestionType[])=> {
         const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
         return indexedQuestions.slice((currentPage - 1) * pageSize, currentPage * pageSize)
@@ -35,6 +36,10 @@ const QuestionsPage = () => {
     }
 
     const tokenData = useSelector((state: AppState)=> state.user.tokenData)
+
+
+    console.log(questions)
+
     return(
         <>  
             <div className='app-header'>
@@ -43,7 +48,7 @@ const QuestionsPage = () => {
             </div>
             <div className='timer'>
                 <p className='timer-title'>До конца теста осталось:</p>
-                <Countdown value={deadline} format="mm:ss:SSS" onFinish={getTestResult}/>
+                <Countdown value={deadline} format="mm:ss" onFinish={getTestResult}/>
             </div>
             <Space direction='vertical'>
                 {
