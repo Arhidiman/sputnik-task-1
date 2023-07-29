@@ -42,6 +42,7 @@ export const initialState: ModalState = {
     },
     currentForm: 'authForm'
 }
+
 const OPEN_MODAl = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
 const SWITCH_FORM = 'SWITCH_FORM'

@@ -11,7 +11,6 @@ export type AppState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
 const root = (
-   
     <BrowserRouter>
         <StrictMode>
             <Provider store={store}>
@@ -20,9 +19,7 @@ const root = (
             
             </Provider>
         </StrictMode>
-    </BrowserRouter>
- 
-   
+    </BrowserRouter> 
 )
 
 ReactDOM.render(

@@ -61,7 +61,6 @@ export const userReducer = (state = initialState as UserState, action: Action) =
     }
 }
 
-
 export const setUserName = (payload: string) : Action => {return {type: SET_USER_NAME, payload: payload }}
 export const setUserPassword = (payload: string) : Action => {return {type: SET_USER_PASSWORD, payload: payload }}
 export const logIn = () : Action => {return {type: LOG_IN}}

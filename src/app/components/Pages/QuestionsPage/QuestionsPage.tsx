@@ -19,8 +19,6 @@ const QuestionsPage = () => {
     const getTestResult = () => dispatch(getResult())
     const {Countdown} = Statistic
     const [deadline, setDeadline] = useState(Date.now() + 1000*60*5)
-    
-    
     const getCurrentPage = (currentPage: number, pageSize:number, questions: QuestionType[])=> {
         const indexedQuestions = questions.map((q, i) => ({ ...q, index: i }))
         return indexedQuestions.slice((currentPage - 1) * pageSize, currentPage * pageSize)
@@ -34,11 +32,7 @@ const QuestionsPage = () => {
         getTestResult()
         setDeadline(0)
     }
-
     const tokenData = useSelector((state: AppState)=> state.user.tokenData)
-
-
-    console.log(questions)
 
     return(
         <>  

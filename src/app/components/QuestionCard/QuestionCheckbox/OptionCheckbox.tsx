@@ -1,9 +1,9 @@
 import { Checkbox } from 'antd';
-import { checkAnswer } from '../../store/questions-reducer/questions-reducer';
+import { checkAnswer } from '../../../store/questions-reducer/questions-reducer';
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux/es/exports';
-import { AppState } from '../../../index';
-import { AppDispatch } from '../../../index';
+import { AppState } from '../../../../index';
+import { AppDispatch } from '../../../../index';
 
 interface QuestionCardProps {
     disabled: boolean,
@@ -13,7 +13,6 @@ interface QuestionCardProps {
 }
 
 const OptionCheckbox = ({disabled, checked, children, payload, checkOption}: OptionProps)=> {
-    console.log('option rendered')
     return(
         <>
             <Checkbox 
@@ -24,10 +23,8 @@ const OptionCheckbox = ({disabled, checked, children, payload, checkOption}: Opt
                 {children}
             </Checkbox>
         </>
-     
     )
 }
-
 
 const mapState = (state:AppState, ownProps: QuestionCardProps)=>
 {
@@ -45,7 +42,6 @@ const mapDispatch = (dispatch: AppDispatch)=>
         checkOption: (questionIndex: number, answerIndex: number)=> {dispatch(checkAnswer({questionIndex: questionIndex, answerIndex: answerIndex}))}
     }
 }
-
 
 type OptionProps = ConnectedProps<typeof connector>
 const connector = connect(mapState, mapDispatch)

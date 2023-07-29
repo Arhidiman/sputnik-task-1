@@ -1,8 +1,7 @@
 import { Card, Space } from 'antd';
 import { QuestionType } from '../../store/questions-reducer/questionsTypes'
-import OptionCheckbox from './OptionCheckbox';
+import OptionCheckbox from './QuestionCheckbox/OptionCheckbox';
 import React from 'react';
-
 
 interface QuestionCardProps {
     question: QuestionType & { index: number },

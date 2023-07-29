@@ -1,13 +1,8 @@
 import './styles/index.scss';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { AppState } from '../index';
-import QuestionsPage from './components/Pages/QuestionsPage/QuestionsPage';
-import MainPage from './components/Pages/MainPage/MainPage';
+import { useDispatch } from 'react-redux/es/exports';
 import { logIn } from './store/user-reducer/user-reducer';
-import { Route, Routes } from 'react-router-dom';
-import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import AppRouter from './components/AppRouter/AppRouter';
 
 const App = () => {
     const dispatch = useDispatch()
@@ -15,16 +10,9 @@ const App = () => {
         dispatch(logIn())
     }, [])
 
-    const tokenData = useSelector((state: AppState) => state.user.tokenData)
-
     return (
         <div className='app'>
-            <Routes>
-                <Route path='/' element = {<MainPage/>}/>
-                <Route path='/login' element={<MainPage/>}/>
-                <Route path='/questions' element={tokenData ? <ErrorBoundary message='Что то пошло не так'><QuestionsPage/></ErrorBoundary> : null}/>
-                <Route path='*' element={<PageNotFound/>}/>
-            </Routes>
+            <AppRouter/>
         </div>
     );
 }
